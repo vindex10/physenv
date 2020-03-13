@@ -21,9 +21,8 @@ function build_yoda() {
         exit 1;
     fi
 
-    WD=`pwd`;
     pushd "${SRC}/${TARGET}"
-    prefix="${WD}/${BUILD_DIR}/${TARGET}-${VERSION}"
+    prefix="${BUILD_DIR}/${TARGET}-${VERSION}"
 
     PATH="$ROOT_BUILD_DIR/bin:$PATH" CFLAGS="-fno-omit-frame-pointer" CXXFLAGS="-fno-omit-frame-pointer" ./configure --prefix="$prefix"
     make

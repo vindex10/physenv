@@ -26,17 +26,16 @@ function build_pythia8() {
         exit 1;
     fi
 
-    if [ -z "$HEPMC3_BUILD_DIR" ]; then
-        echo "Please provide \$HEPMC3_BUILD_DIR";
+    if [ -z "$HEPMC_BUILD_DIR" ]; then
+        echo "Please provide \$HEPMC_BUILD_DIR";
         exit 1;
     fi
 
-    WD=`pwd`;
     pushd "${SRC}/${TARGET}"
-    prefix="${WD}/${BUILD_DIR}/${TARGET}-${VERSION}"
+    prefix="${BUILD_DIR}/${TARGET}-${VERSION}"
     pyinclude=$(python -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())")
     pylib=$(python -c "import distutils.sysconfig as sysconfig; print(sysconfig.get_config_var('LIBDIR'))")
-    ./configure --enable-64bit --enable-shared --cxx-common="-fPIC -fno-omit-frame-pointer" --with-python-bin="/usr/bin" --with-python-include="$pyinclude" --with-python-lib="$pylib" --with-root="$ROOT_BUILD_DIR" --with-lhapdf6="$LHAPDF6_BUILD_DIR" --with-hepmc3="$HEPMC3_BUILD_DIR" --prefix="$prefix"
+    ./configure --enable-64bit --enable-shared --cxx-common="-fPIC -fno-omit-frame-pointer" --with-python-bin="/usr/bin" --with-python-include="$pyinclude" --with-python-lib="$pylib" --with-root="$ROOT_BUILD_DIR" --with-lhapdf6="$LHAPDF6_BUILD_DIR" --with-hepmc2="$HEPMC_BUILD_DIR" --with-hepmc3="$HEPMC3_BUILD_DIR" --prefix="$prefix"
      make
      make install
     popd

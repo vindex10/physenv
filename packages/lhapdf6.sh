@@ -20,9 +20,8 @@ function get_lhapdf6() {
 }
 
 function build_lhapdf6() {
-    WD=`pwd`;
     pushd "${SRC}/${TARGET}"
-    prefix="${WD}/${BUILD_DIR}/${TARGET}-${VERSION}"
+    prefix="${BUILD_DIR}/${TARGET}-${VERSION}"
     libtoolize --force
     aclocal
     autoheader

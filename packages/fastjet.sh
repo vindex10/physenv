@@ -16,9 +16,8 @@ function get_fastjet() {
 }
 
 function build_fastjet() {
-    WD=`pwd`;
     pushd "${SRC}/${TARGET}"
-    prefix="${WD}/${BUILD_DIR}/${TARGET}-${VERSION}"
+    prefix="${BUILD_DIR}/${TARGET}-${VERSION}"
     CFLAGS="-fno-omit-frame-pointer" CXXFLAGS="-fno-omit-frame-pointer" ./configure --prefix="$prefix" --enable-allcxxplugins --enable-pyext
     make
     make install

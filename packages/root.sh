@@ -23,11 +23,10 @@ function _build_root_common() {
         pythia8_flag="-Dpythia8:boolean=ON -DPYTHIA8_INCLUDE_DIR=${PYTHIA8_BUILD_DIR}/include -DPYTHIA8_LIBRARY=${PYTHIA8_BUILD_DIR}/lib/libpythia8.so"
     fi;
 
-    WD=`pwd`;
     pushd "${SRC}/${TARGET}"
     mkdir obj
     pushd obj
-    cmake -DCMAKE_C_FLAGS="-fno-omit-frame-pointer" -DCMAKE_CXX_FLAGS="-fno-omit-frame-pointer" -DCMAKE_INSTALL_PREFIX="${WD}/${BUILD_DIR}/${TARGET}-${VERSION}" -Dbuiltin_llvm:boolean=ON -Dpythia6:boolean=OFF $pythia8_flag -Dminuit2:boolean=ON -Droofit:boolean=ON -Dtmva:boolean=ON -Dunuran:boolean=ON -Dvc:boolean=ON -Dvdt:boolean=ON -Dx11:boolean=ON ..
+    cmake -DCMAKE_C_FLAGS="-fno-omit-frame-pointer" -DCMAKE_CXX_FLAGS="-fno-omit-frame-pointer" -DCMAKE_INSTALL_PREFIX="${BUILD_DIR}/${TARGET}-${VERSION}" -Dbuiltin_llvm:boolean=ON -Dpythia6:boolean=OFF $pythia8_flag -Dminuit2:boolean=ON -Droofit:boolean=ON -Dtmva:boolean=ON -Dunuran:boolean=ON -Dvc:boolean=ON -Dvdt:boolean=ON -Dx11:boolean=ON ..
     make
     make install
     popd
@@ -43,8 +42,16 @@ function build_root_withpythia() {
         echo "Please provide \$PYTHIA8_BUILD_DIR"
         exit 1;
     fi;
-
+    
+    _src_clean
     _build_root_common
+}
+
+function _src_clean() {
+    pushd "${SRC}/${TARGET}"
+    git clean -x -d -f
+    git reset --hard
+    popd
 }
 
 case "$1" in

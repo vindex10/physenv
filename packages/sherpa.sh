@@ -28,8 +28,8 @@ function _build_sherpa_common() {
         exit 1;
     fi
 
-    if [ -z "$HEPMC3_BUILD_DIR" ]; then
-        echo "Please provide \$HEPMC3_BUILD_DIR";
+    if [ -z "$HEPMC_BUILD_DIR" ]; then
+        echo "Please provide \$HEPMC_BUILD_DIR";
         exit 1;
     fi
 
@@ -55,9 +55,8 @@ function _build_sherpa_common() {
         version_suffix="-debug"
     fi
 
-    WD=`pwd`;
     pushd "${SRC}/${TARGET}"
-    prefix="${WD}/${BUILD_DIR}/${TARGET}-${VERSION}${version_suffix}"
+    prefix="${BUILD_DIR}/${TARGET}-${VERSION}${version_suffix}"
 
     libtoolize --force
     aclocal
@@ -65,7 +64,7 @@ function _build_sherpa_common() {
     automake --force-missing --add-missing
     autoconf
 
-    CFLAGS="-fno-omit-frame-pointer $additional_flags" CXXFLAGS="-fno-omit-frame-pointer $additional_flags" ./configure --enable-pyext --enable-ufo --enable-hepmc3root --enable-hepmc3="$HEPMC3_BUILD_DIR" --enable-rivet="$RIVET_BUILD_DIR" --enable-fastjet="$FASTJET_BUILD_DIR" --enable-root="$ROOT_BUILD_DIR" --enable-lhapdf="$LHAPDF6_BUILD_DIR" --enable-pythia="$PYTHIA8_BUILD_DIR" --enable-gzip
+    CFLAGS="-fno-omit-frame-pointer $additional_flags" CXXFLAGS="-fno-omit-frame-pointer $additional_flags" ./configure --prefix="$prefix" --enable-pyext --enable-ufo --enable-hepmc3root  --enable-hepmc2="$HEPMC_BUILD_DIR" --enable-rivet="$RIVET_BUILD_DIR" --enable-fastjet="$FASTJET_BUILD_DIR" --enable-root="$ROOT_BUILD_DIR" --enable-lhapdf="$LHAPDF6_BUILD_DIR" --enable-pythia="$PYTHIA8_BUILD_DIR" --enable-gzip
     make
     make install
     popd

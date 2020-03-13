@@ -18,8 +18,8 @@ function get_rivet() {
 }
 
 function build_rivet() {
-    if [ -z "$HEPMC3_BUILD_DIR" ]; then
-        echo "Please provide \$HEPMC3_BUILD_DIR";
+    if [ -z "$HEPMC_BUILD_DIR" ]; then
+        echo "Please provide \$HEPMC_BUILD_DIR";
         exit 1;
     fi
 
@@ -34,9 +34,8 @@ function build_rivet() {
     fi
 
 
-    WD=`pwd`;
     pushd "${SRC}/${TARGET}"
-    prefix="${WD}/${BUILD_DIR}/${TARGET}-${VERSION}"
+    prefix="${BUILD_DIR}/${TARGET}-${VERSION}"
 
     libtoolize --force
     aclocal
@@ -44,7 +43,7 @@ function build_rivet() {
     automake --force-missing --add-missing
     autoconf
     
-    CXXFLAGS="-fno-omit-frame-pointer" CFLAGS="-fno-omit-frame-pointer" ./configure --prefix="$prefix" --with-hepmc3="$HEPMC3_BUILD_DIR" --with-yoda="$YODA_BUILD_DIR" --with-fastjet="$FASTJET_BUILD_DIR"
+    CXXFLAGS="-fno-omit-frame-pointer" CFLAGS="-fno-omit-frame-pointer" ./configure --prefix="$prefix" --with-hepmc="$HEPMC_BUILD_DIR" --with-yoda="$YODA_BUILD_DIR" --with-fastjet="$FASTJET_BUILD_DIR"
     make
     make install
     popd
