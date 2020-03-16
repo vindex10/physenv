@@ -31,9 +31,11 @@ BUILD_DIR="$BUILD_DIR" FASTJET_BUILD_DIR="$fastjet_build_dir" $SCRIPTS_DIR/packa
 BUILD_DIR="$BUILD_DIR" HEPMC_BUILD_DIR="$hepmc_build_dir" YODA_BUILD_DIR="$yoda_build_dir" FASTJET_BUILD_DIR="$fastjet_build_dir" $SCRIPTS_DIR/packages/rivet.sh build
 rivet_build_dir="$BUILD_DIR/rivet-2.7.2"
 
-BUILD_DIR="$BUILD_DIR" LHAPDF6_BUILD_DIR="$lhapdf6_build_dir" PYTHIA8_BUILD_DIR="$pythia8_build_dir" ROOT_BUILD_DIR="$root_build_dir" HEPMC_BUILD_DIR="$hepmc_build_dir" RIVET_BUILD_DIR="$rivet_build_dir" FASTJET_BUILD_DIR="$fastjet_build_dir" $SCRIPTS_DIR/packages/sherpa.sh build
+BUILD_DIR="$BUILD_DIR" $SCRIPTS_DIR/packages/openloops2 build
+openloops2_build_dir="$BUILD_DIR/openloops2-2.1.0"
+
+BUILD_DIR="$BUILD_DIR" LHAPDF6_BUILD_DIR="$lhapdf6_build_dir" PYTHIA8_BUILD_DIR="$pythia8_build_dir" ROOT_BUILD_DIR="$root_build_dir" HEPMC_BUILD_DIR="$hepmc_build_dir" RIVET_BUILD_DIR="$rivet_build_dir" FASTJET_BUILD_DIR="$fastjet_build_dir" OPENLOOPS2_BUILD_DIR="$openloops2_build_dir" $SCRIPTS_DIR/packages/sherpa.sh build
 sherpa_build_dir="$BUILD_DIR/sherpa-2.2.8"
 
-BUILD_DIR="$BUILD_DIR" LHAPDF6_BUILD_DIR="$lhapdf6_build_dir" PYTHIA8_BUILD_DIR="$pythia8_build_dir" ROOT_BUILD_DIR="$root_build_dir" HEPMC_BUILD_DIR="$hepmc_build_dir" RIVET_BUILD_DIR="$rivet_build_dir" FASTJET_BUILD_DIR="$fastjet_build_dir" $SCRIPTS_DIR/packages/sherpa.sh build_debug
+BUILD_DIR="$BUILD_DIR" LHAPDF6_BUILD_DIR="$lhapdf6_build_dir" PYTHIA8_BUILD_DIR="$pythia8_build_dir" ROOT_BUILD_DIR="$root_build_dir" HEPMC_BUILD_DIR="$hepmc_build_dir" RIVET_BUILD_DIR="$rivet_build_dir" FASTJET_BUILD_DIR="$fastjet_build_dir" OPENLOOPS2_BUILD_DIR="$openloops2_build_dir" $SCRIPTS_DIR/packages/sherpa.sh build_debug
 sherpa_build_dir="$BUILD_DIR/sherpa-2.2.8-debug"
-

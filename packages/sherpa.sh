@@ -7,6 +7,8 @@ BUILD_DIR=${BUILD_DIR:-build}
 TARGET=${TARGET:-"sherpa"}
 VERSION=${VERSION:-"2.2.8"}  # tag: vVERSION
 
+DEBUG=${DEBUG:-"false"}
+
 function get_sherpa() {
     pushd $SRC
     git clone --depth=1 https://gitlab.com/sherpa-team/sherpa.git "$TARGET"
@@ -48,9 +50,14 @@ function _build_sherpa_common() {
         exit 1;
     fi
 
+    if [ -z "$OPENLOOPS2_BUILD_DIR" ]; then
+        echo "Please provide \$OPENLOOPS2_BUILD_DIR";
+        exit 1;
+    fi
+
     additional_flags=""
     version_suffix=""
-    if [ $DEBUG = true ]; then
+    if [ "$DEBUG" = "true" ]; then
         additional_flags="-g -O0"
         version_suffix="-debug"
     fi
@@ -64,13 +71,14 @@ function _build_sherpa_common() {
     automake --force-missing --add-missing
     autoconf
 
-    CFLAGS="-fno-omit-frame-pointer $additional_flags" CXXFLAGS="-fno-omit-frame-pointer $additional_flags" ./configure --prefix="$prefix" --enable-pyext --enable-ufo --enable-hepmc3root  --enable-hepmc2="$HEPMC_BUILD_DIR" --enable-rivet="$RIVET_BUILD_DIR" --enable-fastjet="$FASTJET_BUILD_DIR" --enable-root="$ROOT_BUILD_DIR" --enable-lhapdf="$LHAPDF6_BUILD_DIR" --enable-pythia="$PYTHIA8_BUILD_DIR" --enable-gzip
+    CFLAGS="-fno-omit-frame-pointer $additional_flags" CXXFLAGS="-fno-omit-frame-pointer $additional_flags" ./configure --prefix="$prefix" --enable-pyext --enable-ufo --enable-hepmc3root  --enable-hepmc2="$HEPMC_BUILD_DIR" --enable-rivet="$RIVET_BUILD_DIR" --enable-fastjet="$FASTJET_BUILD_DIR" --enable-root="$ROOT_BUILD_DIR" --enable-lhapdf="$LHAPDF6_BUILD_DIR" --enable-pythia="$PYTHIA8_BUILD_DIR" --enable-openloops="$OPENLOOPS2_BUILD_DIR" --enable-gzip
     make
     make install
     popd
 }
 
 function build_sherpa() {
+    _src_clean
     _build_sherpa_common
 }
 
