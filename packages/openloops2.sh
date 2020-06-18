@@ -5,9 +5,10 @@ set -x
 SRC=${SRC:-src}
 BUILD_DIR=${BUILD_DIR:-build}
 TARGET=${TARGET:-"openloops2"}
-VERSION=${VERSION:-"2.1.0"}  # tag: OpenLoops-$VERSION
+VERSION=${VERSION:-"2.1.1"}  # tag: OpenLoops-$VERSION
 
-OPENLOOP_LIBS="lhc.coll bbhj heftpphj heftpphjj heftpphjjj pphbb pphbbj pphj2 pphjj2 pphjj_vbf pphjj_vbf_ew pphjjj2 pphll pphll2 pphll_ew pphllj pphllj2 pphllj_ew pphlljj pphlljj_top pphlnj_ckm pphlnjj pphv pphv_ew pphwjj pphz2 pphzj2 pphzjj"
+#OPENLOOP_LIBS="lhc.coll bbhj heftpphj heftpphjj heftpphjjj pphbb pphbbj pphj2 pphjj2 pphjj_vbf pphjj_vbf_ew pphjjj2 pphll pphll2 pphll_ew pphllj pphllj2 pphllj_ew pphlljj pphlljj_top pphlnj_ckm pphlnjj pphv pphv_ew pphwjj pphz2 pphzj2 pphzjj"
+OPENLOOP_LIBS="lhc.coll"
 
 function get_openloops2() {
     pushd $BUILD_DIR  # OpenLoops works from the source dir

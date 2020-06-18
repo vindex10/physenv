@@ -5,7 +5,7 @@ set -x
 SRC=${SRC:-src}
 BUILD_DIR=${BUILD_DIR:-build}
 TARGET=${TARGET:-"sherpa"}
-VERSION=${VERSION:-"2.2.8"}  # tag: vVERSION
+VERSION=${VERSION:-"2.2.10"}  # tag: vVERSION
 
 DEBUG=${DEBUG:-"false"}
 
@@ -30,8 +30,8 @@ function _build_sherpa_common() {
         exit 1;
     fi
 
-    if [ -z "$HEPMC_BUILD_DIR" ]; then
-        echo "Please provide \$HEPMC_BUILD_DIR";
+    if [ -z "$HEPMC3_BUILD_DIR" ]; then
+        echo "Please provide \$HEPMC3_BUILD_DIR";
         exit 1;
     fi
 
@@ -71,7 +71,7 @@ function _build_sherpa_common() {
     automake --force-missing --add-missing
     autoconf
 
-    CFLAGS="-fno-omit-frame-pointer $additional_flags" CXXFLAGS="-fno-omit-frame-pointer $additional_flags" ./configure --prefix="$prefix" --enable-pyext --enable-ufo  --enable-hepmc2="$HEPMC_BUILD_DIR" --enable-rivet="$RIVET_BUILD_DIR" --enable-fastjet="$FASTJET_BUILD_DIR" --enable-root="$ROOT_BUILD_DIR" --enable-lhapdf="$LHAPDF6_BUILD_DIR" --enable-pythia="$PYTHIA8_BUILD_DIR" --enable-openloops="$OPENLOOPS2_BUILD_DIR" --enable-gzip
+    CFLAGS="-fno-omit-frame-pointer -I$HEPMC3_BUILD_DIR/include/ $additional_flags" CXXFLAGS="-fno-omit-frame-pointer -I$HEPMC3_BUILD_DIR/include/ $additional_flags" ./configure --prefix="$prefix" --enable-pyext --enable-ufo  --enable-hepmc3="$HEPMC3_BUILD_DIR" --enable-rivet="$RIVET_BUILD_DIR" --enable-fastjet="$FASTJET_BUILD_DIR" --enable-root="$ROOT_BUILD_DIR" --enable-lhapdf="$LHAPDF6_BUILD_DIR" --enable-pythia="$PYTHIA8_BUILD_DIR" --enable-openloops="$OPENLOOPS2_BUILD_DIR" --enable-gzip
     make
     make install
     popd

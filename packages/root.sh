@@ -5,7 +5,7 @@ set -x
 SRC=${SRC:-src}
 BUILD_DIR=${BUILD_DIR:-build}
 TARGET=${TARGET:-"root"}
-VERSION=${VERSION:-"6-20-00"}  # tag: vVERSION
+VERSION=${VERSION:-"6-20-06"}  # tag: vVERSION
 
 function get_root() {
     pushd $SRC

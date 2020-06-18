@@ -5,7 +5,7 @@ set -x
 SRC=${SRC:-src}
 BUILD_DIR=${BUILD_DIR:-build}
 TARGET=${TARGET:-"hepmc3"}
-VERSION=${VERSION:-"3.2.0"}  # tag: VERSION
+VERSION=${VERSION:-"3.2.2"}  # tag: VERSION
 
 function get_hepmc3() {
     pushd $SRC

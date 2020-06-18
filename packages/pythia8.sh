@@ -26,8 +26,8 @@ function build_pythia8() {
         exit 1;
     fi
 
-    if [ -z "$HEPMC_BUILD_DIR" ]; then
-        echo "Please provide \$HEPMC_BUILD_DIR";
+    if [ -z "$HEPMC3_BUILD_DIR" ]; then
+        echo "Please provide \$HEPMC3_BUILD_DIR";
         exit 1;
     fi
 

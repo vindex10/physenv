@@ -5,7 +5,7 @@ export BUILD_DIR="`pwd`/build"
 export SRC="`pwd`/src"
 
 ${SCRIPTS_DIR}/packages/root.sh get
-${SCRIPTS_DIR}/packages/hepmc.sh get
+${SCRIPTS_DIR}/packages/hepmc3.sh get
 ${SCRIPTS_DIR}/packages/lhapdf6.sh get
 ${SCRIPTS_DIR}/packages/pythia8.sh get
 ${SCRIPTS_DIR}/packages/yoda.sh get

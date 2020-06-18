@@ -5,7 +5,7 @@ set -x
 SRC=${SRC:-src}
 BUILD_DIR=${BUILD_DIR:-build}
 TARGET=${TARGET:-"yoda"}
-VERSION=${VERSION:-"1.8.0"}  # tag: yoda-VERSION
+VERSION=${VERSION:-"1.8.2"}  # tag: yoda-VERSION
 
 function get_yoda() {
     pushd $SRC

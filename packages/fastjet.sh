@@ -5,7 +5,7 @@ set -x
 SRC=${SRC:-src}
 BUILD_DIR=${BUILD_DIR:-build}
 TARGET=${TARGET:-"fastjet"}
-VERSION=${VERSION:-"3.3.3"}
+VERSION=${VERSION:-"3.3.4"}
 
 function get_fastjet() {
     pushd $SRC

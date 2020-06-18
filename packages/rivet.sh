@@ -5,7 +5,7 @@ set -x
 SRC=${SRC:-src}
 BUILD_DIR=${BUILD_DIR:-build}
 TARGET=${TARGET:-"rivet"}
-VERSION=${VERSION:-"2.7.2"}  # tag: rivet-${VERSION}
+VERSION=${VERSION:-"3.1.1"}  # tag: rivet-${VERSION}
 
 function get_rivet() {
     pushd $SRC
@@ -18,8 +18,8 @@ function get_rivet() {
 }
 
 function build_rivet() {
-    if [ -z "$HEPMC_BUILD_DIR" ]; then
-        echo "Please provide \$HEPMC_BUILD_DIR";
+    if [ -z "$HEPMC3_BUILD_DIR" ]; then
+        echo "Please provide \$HEPMC3_BUILD_DIR";
         exit 1;
     fi
 
@@ -43,9 +43,9 @@ function build_rivet() {
     automake --force-missing --add-missing
     autoconf
     
-    CXXFLAGS="-fno-omit-frame-pointer" CFLAGS="-fno-omit-frame-pointer" ./configure --prefix="$prefix" --with-hepmc="$HEPMC_BUILD_DIR" --with-yoda="$YODA_BUILD_DIR" --with-fastjet="$FASTJET_BUILD_DIR"
+    CXXFLAGS="-fno-omit-frame-pointer" CFLAGS="-fno-omit-frame-pointer" ./configure --prefix="$prefix" --with-hepmc3="$HEPMC3_BUILD_DIR" --with-hepmc3-libpath="$HEPMC3_BUILD_DIR/lib64" --with-yoda="$YODA_BUILD_DIR" --with-fastjet="$FASTJET_BUILD_DIR"
     make
-    make install
+    LD_LIBRARY_PATH="$HEPMC3_BUILD_DIR/lib64" make install
     popd
 }
 
