@@ -16,7 +16,7 @@ fi;
 
 export PYTHONPATH="$sherpa_build_dir/lib64/python3.6/site-packages/ufo_interface:$sherpa_build_dir/lib64/python3.6/site-packages/:$PYTHONPATH"
 
-export LD_LIBRARY_PATH="$root_build_dir/lib:$hepmc3_build_dir/lib:$hepmc3_build_dir/lib64:$lhapdf6_build_dir/lib:$pythia8_build_dir/lib:$yoda_build_dir/lib:$fastjet_build_dir/lib:$rivet_build_dir/lib:$sherpa_build_dir/lib/SHERPA-MC:$LD_LIBDRARY_PATH"
+export LD_LIBRARY_PATH="$root_build_dir/lib:$hepmc3_build_dir/lib:$hepmc3_build_dir/lib64:$lhapdf6_build_dir/lib:$pythia8_build_dir/lib:$yoda_build_dir/lib:$fastjet_build_dir/lib:$rivet_build_dir/lib:$openloops2_build_dir/lib:$sherpa_build_dir/lib/SHERPA-MC:$LD_LIBDRARY_PATH"
 
 export PATH="$root_build_dir/bin:$hepmc3_build_dir/bin:$lhapdf6_build_dir/bin:$pythia8_build_dir/bin:$yoda_build_dir/bin:$fastjet_build_dir/bin:$rivet_build_dir/bin:$sherpa_build_dir/bin:$PATH"
 
